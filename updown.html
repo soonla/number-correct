@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <div><input type="text" placeholder="1~100 숫자를 입력하세요." id="num" /></div>
+      <div><button id="btnConfirm">확인</button></div>
+    </div>
+    <script>
+      const random = Math.ceil(Math.random() * 100);
+      console.log(random);
+
+      const num = document.querySelector("#num");
+      const btnConfirm = document.querySelector("#btnConfirm");
+      let count = 1;
+
+      function ddang(msg, element) {
+        alert(msg);
+        element.value = "";
+        element.focus();
+        count++;
+      }
+      function check() {
+        const selectNum = num.value;
+        if (selectNum > random) {
+          ddang("down", num);
+        } else if (selectNum < random) {
+          ddang("up", num);
+        } else {
+          alert("answer" + count + "번 만에 정답.");
+        }
+      }
+
+      btnConfirm.addEventListener("click", function (e) {
+        const selectNum = num.value;
+        check();
+      });
+      num.addEventListener("keyup", function (e) {
+        console.log(e.key);
+        const selectKeyboard = e.key;
+        if (selectKeyboard == "Enter") {
+          check();
+        }
+        //   console.log("마우스이벤트테스트");
+      });
+    </script>
+  </body>
+</html>
